@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="lib/underscore.js"></script>
+    <script src="lib/backbone.js"></script>
+</head>
+<body>
+    <div id="divTip">点击我</div>
+    <script type="text/javascript">
+        var divView = {
+            ele:'divTip',
+            tip:'hello,underscore!',
+            onClick:function () {
+                document.getElementById(this.ele).innerHTML=this.tip;
+            }
+        }
+        _.bindAll(divView,'onClick');
+        document.getElementById(divView.ele).addEventListener('click',divView.onClick)
+    </script>
+
+</body>
+</html>
