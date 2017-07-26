@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="http://localhost/arcgis_js_api/library/3.21/3.21/init.js"></script>
+</head>
+<body>
+<script>
+    require(['dojo/_base/lang'],function (lang) {
+        Function.prototype.mybind=function(){
+           var that = this,
+               context = [].shift.call(arguments),  //获取第一个值作为函数
+               args = [].slice.call(arguments);
+            return function () {
+                return that.apply(context,[].concat.call(args,[].slice.call(arguments)));
+            }
+        }
+        var mylang=function(){
+           var argtest =Object.create(arguments);
+            var a=[].shift.call(argtest);
+            console.log(a)
+            var that=[].shift.call(arguments),     //获取第一个值作为函数
+                context = [].shift.call(arguments),  //获取第2个值作为即将绑定的作用域
+                args = [].slice.call(arguments);
+            return function () {
+                return context.apply(that,[].concat.call(args,[].slice.call(arguments)));
+            }
+        }
+
+        var foo = {bar:function (a,b,c) {
+            console.log(a,b,c);
+        }}
+        //dojo
+        lang.hitch(foo,'bar')();
+        //使用原生达到效果
+
+        var myFunction = function (a,b,c) {
+            console.log(this);
+            console.log(a,b,c);
+        }
+        //lang.hitch(foo,myFunction,1,2,3)();
+
+        //myFunction.bind(foo,1,2,3)();
+        myFunction.mybind(foo,1,2,3)();
+
+        mylang(foo,myFunction,1,2,3)();
+
+
+        var add=function(a,b) {
+            console.log(this);
+            console.log(typeof this)
+            return a + b;
+        }
+
+        var test=function () {
+            add.call(arguments)
+        }(1,2,3)
+
+
+
+    })
+</script>
+
+</body>
+</html>
