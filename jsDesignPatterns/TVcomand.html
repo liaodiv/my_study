@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<button id="execute">excute命令</button>
+<button id="undo">undo命令</button>
+<script>
+    var Tv = {
+        open:function () {
+            console.log('打开电视')
+        },
+        close:function () {
+            console.log('关上电视')
+        }
+    };
+    var createCommand = function (recevier) {
+        this.receiver =recevier;
+
+        var execute = function () {
+            return recevier.open();
+        }
+        var undo = function () {
+            return recevier.close();
+        }
+
+        return{
+            execute:execute,
+            undo:undo
+        }
+    }
+  /*  OpenTvCommand.prototype.execute = function () {
+      this.receiver.open();
+    };
+    OpenTvCommand.prototype.undo = function () {
+      this.receiver.close();
+    };
+*/
+    var setCommand = function (command) {
+        document.getElementById('execute').onclick = function () {
+            command.execute();
+        }
+        document.getElementById('undo').onclick = function () {
+            command.undo();
+        }
+    }
+    setCommand(createCommand(Tv));
+    
+    var isType = function (type) {
+        return function (obj) {
+            return Object.prototype.toString(obj) === '[object '+type+']'
+        }
+    };
+    var isString = isType('String');
+    var isArray = isType('Array');
+    var isNumber = isType('Number');
+    console.log(isArray([1,2,3]))
+
+    var Type ={};
+    for(var i=0,type ;type = ['String','Array','Number'][i++];){
+
+    }
+</script>
+</body>
+</html>

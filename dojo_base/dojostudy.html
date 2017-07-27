@@ -56,7 +56,7 @@
             console.log(a,b,c);
         }
         func.call(null,1,2,3)
-        func.apply(null,1,2,3)
+        func.apply(null,[1,2,3])
 
         /*//myFunction.bind(foo,1,2,3)();
         myFunction.mybind(foo,1,2,3)();
@@ -76,6 +76,14 @@
             add.call(arguments)
         }(1,2,3)
 */
+        function a() {
+            (function b() {
+                return 90;
+            })();
+            return 10;
+        }
+
+        console.log(a());
 
 
 
