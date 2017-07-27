@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="src/EventUtil.js"></script>
+</head>
+<body>
+<div id="droptarget">hello world</div>
+<script>
+    var droptarget = document.getElementById("droptarget");
+
+    EventUtil.addHandler(droptarget,"dragover",function (event) {
+       EventUtil.preventDefault(event);
+    });
+
+    EventUtil.addHandler(droptarget,'dragenter',function (event) {
+        EventUtil.preventDefault(event);
+    })
+</script>
+</body>
+</html>
