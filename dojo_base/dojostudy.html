@@ -8,7 +8,7 @@
 <body>
 <script>
     require(['dojo/_base/lang'],function (lang) {
-  /*      Function.prototype.mybind=function(){
+        Function.prototype.mybind=function(){
            var that = this,
                context = [].shift.call(arguments),  //获取第一个值作为函数
                args = [].slice.call(arguments);
@@ -26,7 +26,7 @@
             return function () {
                 return context.apply(that,[].concat.call(args,[].slice.call(arguments)));
             }
-        }*/
+        }
 
         var foo = {bar:function (a,b,c) {
             console.log(a,b,c);
@@ -36,13 +36,14 @@
         //使用原生达到效果
 
 
-      /*  var myFunction = function (a,b,c) {
+        var myFunction = function (a,b,c) {
             console.log(this);
             console.log(a,b,c);
-        }*/
+        }
         lang.hitch(foo,foo.bar,1,2,3)();
+        mylang(foo,foo.bar,1,2,3)();
 
-       /* var obj1={
+     /*  var obj1={
             name:'sven',
             getName:function(){
                 var func=function (){
@@ -51,17 +52,17 @@
                 return this.name;
             }
         };
-        console.log(obj1.getName());*/
+        console.log(obj1.getName());
         var func = function(a,b,c){
             console.log(a,b,c);
         }
         func.call(null,1,2,3)
         func.apply(null,[1,2,3])
+*/
+      //  myFunction.bind(foo,1,2,3)();
+      //  myFunction.mybind(foo,1,2,3)();
 
-        /*//myFunction.bind(foo,1,2,3)();
-        myFunction.mybind(foo,1,2,3)();
-
-        mylang(foo,myFunction,1,2,3)();
+       // mylang(foo,myFunction,1,2,3)();
 
 
 
@@ -75,15 +76,15 @@
         var test=function () {
             add.call(arguments)
         }(1,2,3)
-*/
-        function a() {
+
+      /*  function a() {
             (function b() {
                 return 90;
             })();
             return 10;
         }
 
-        console.log(a());
+        console.log(a());*/
 
 
 
