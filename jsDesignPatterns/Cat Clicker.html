@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="lib/jquery.min.js"></script>
+</head>
+<body>
+<select id="Catselect">
+
+</select>
+<img id="my-elem" height="100" width="150" src="img/cat.jpg" >
+<p id="num">0</p>
+
+<script>
+    $('#my-elem').click(addNum);
+
+    function addNum() {
+        var elem =  $('#num');
+        var num = Catnames[1][thisnum];
+        num++;
+        elem.text(num);
+        //保存到数据储存
+       Catnames[1][thisnum] = num;
+        console.log(num);
+    }
+</script>
+<script src="src/Cat.js"></script>
+</body>
+</html>
