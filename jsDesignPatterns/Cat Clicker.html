@@ -11,9 +11,21 @@
 </select>
 <img id="my-elem" height="100" width="150" src="img/cat.jpg" >
 <p id="num">0</p>
+<div>
+    <button type="button" id="cat-admin">admin</button>
+    <div id="adminview" style="display: none">
+    <div>
+        <label>Catname</label><input id="catname">
+    </div>
+    <div>
+        <label>Catclick</label><input id="catclick">
+    </div>
+    <div><button id="save">save</button><button id="cancel">cancel</button></div>
+    </div>
+</div>
 
 <script>
-    $('#my-elem').click(addNum);
+ /*   $('#my-elem').click(addNum);
 
     function addNum() {
         var elem =  $('#num');
@@ -23,7 +35,7 @@
         //保存到数据储存
        Catnames[1][thisnum] = num;
         console.log(num);
-    }
+    }*/
 </script>
 <script src="src/Cat.js"></script>
 </body>
