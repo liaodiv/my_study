@@ -1,6 +1,8 @@
 /**
  * Created by 27353 on 2017/8/3.
  */
+
+
 var viewModel = function () {
     this.clickCount = ko.observable(0);
     this.name = ko.observable('Tabby');
@@ -10,6 +12,7 @@ var viewModel = function () {
         this.clickCount(this.clickCount() + 1);
         this.level();
     };
+    this.catnames = ['Jan','Feb','Mar','etc'];
     this.level = ko.computed(function () {
         if(this.clickCount() >50){
             return 'one';
@@ -27,3 +30,7 @@ var viewModel = function () {
 }
 
 ko.applyBindings(new viewModel());
+/*ko.applyBindings({
+
+});*/
+
