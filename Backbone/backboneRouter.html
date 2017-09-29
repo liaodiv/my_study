@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>backbone-router</title>
+
+</head>
+<body>
+<a href="#actions">testActions</a>
+<a href="#/posts/120">Post 120</a>
+<a href="#/dashboard/graph">Load Route/Action View</a>
+<a href="#/download/user/images/hey.gif">download gif</a>
+<script src="lib/jquery.min.js"></script>
+<script src="lib/underscore.js"></script>
+<script src="lib/backbone.js"></script>
+<script >
+    (function ($) {
+       var AppRouter = Backbone.Router.extend({
+           routes:{
+               "posts/:id":"getPost",
+               "*actions":"defaultRoute",
+               "download/*path":"downloadFile",
+               ":route/:action":"loadView"
+           },
+           defaultRoute:function (actions) {
+               alert(actions)
+           },
+           getPost:function (id) {
+               alert(id);
+           },
+           downloadFile:function (path) {
+               alert(path);
+           },
+           loadView:function (route,action) {
+               alert(route + "_" + action);
+           }
+       })
+        var app_router = new AppRouter; Backbone.history.start();
+
+    })(jQuery)
+
+</script>
+</body>
+</html>

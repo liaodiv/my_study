@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>backbone-view</title>
+
+</head>
+<body>
+<div id="search_container"></div>
+<div id="myinput"></div>
+
+<script type="text/template" id="search_template">
+    <label><%= search_label %></label>
+    <input type="text" id="search_input" />
+    <input type="button" id="search_button" value="Search" />
+</script>
+
+<script src="lib/jquery.min.js"></script>
+<script src="lib/underscore.js"></script>
+<script src="lib/backbone.js"></script>
+<script >
+    (function ($) {
+      var SearchView = Backbone.View.extend({
+          initialize:function () {
+              alert('init a SearchView');
+          },
+          render:function (context) {
+              var template = _.template($("#search_template").html());
+              $(this.el).html(template(context))
+          },
+          events:{  //就是在这里绑定的
+              //定义类型为button的input标签的点击事件，触发函数doSearch
+              'click input[type=button]' : 'doSearch'
+
+          },
+
+          doSearch: function(event){
+              alert("search for " + $("#search_input").val());
+              m.set('name',$("#search_input").val());
+          }
+
+      })
+        var searchView = new SearchView({el: $("#search_container")});
+        searchView.render({search_label:"搜索渲染"})
+
+        var View = Backbone.View.extend({
+            initialize:function () {
+                this.listenTo(this.model,'change:name',this.onNameChange);
+            },
+            onNameChange:function () {
+                this.$('.name').text(this.model.get('name'));
+            },
+//            template:'<input type="text" class="name-input"><span class="name"></span>',
+            template:'<span class="name">232323</span>',
+         /*   events:{'input .name-input':'_changeName'},
+            _changeName:function (e) {
+                var value = e.currentTarget.value;
+                this.model.set('name',value);
+                console.log(this.model.get('name'));
+                return false;
+            },*/
+            render:function () {
+                $(this.el).html(this.template);
+            }
+        })
+
+        var m = new Backbone.Model({name:'Jack'});
+        var v = new View({model:m,el:$("#myinput")});
+        v.render();
+        m.set('name','model');
+
+    })(jQuery)
+
+</script>
+</body>
+</html>
